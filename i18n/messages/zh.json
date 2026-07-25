@@ -1,0 +1,81 @@
+{
+  "common": {
+    "title": "PhoneComparison.ing",
+    "subtitle": "AI 驱动的手机参数对比平台",
+    "description": "选择您关心的参数，快速对比多款手机的核心配置与实时价格",
+    "compareNow": "开始对比",
+    "searching": "正在搜索...",
+    "backHome": "返回首页",
+    "all": "全部",
+    "specs": "参数",
+    "priceSource": "价格来源",
+    "updated": "更新时间",
+    "noResults": "未找到匹配的手机",
+    "noResultsHint": "请尝试调整筛选条件",
+    "footer": "用 AI 的方式，重新定义手机对比",
+    "brand": "品牌",
+    "filters": "筛选条件",
+    "verified": "价格已校验",
+    "resultsCount": "共找到 {count} 款手机"
+  },
+  "filters": {
+    "ram": "内存",
+    "storage": "存储容量",
+    "brand": "品牌",
+    "releaseYear": "上市时间",
+    "priceRange": "价格区间"
+  },
+  "ramOptions": {
+    "8": "8 GB",
+    "12": "12 GB",
+    "16": "16 GB",
+    "24": "24 GB"
+  },
+  "storageOptions": {
+    "32": "32 GB",
+    "64": "64 GB",
+    "128": "128 GB",
+    "256": "256 GB",
+    "512": "512 GB",
+    "1024": "1 TB",
+    "2048": "2 TB"
+  },
+  "brandOptions": {
+    "apple": "Apple",
+    "samsung": "Samsung",
+    "xiaomi": "Xiaomi",
+    "huawei": "Huawei",
+    "oneplus": "OnePlus",
+    "google": "Google",
+    "oppo": "OPPO",
+    "vivo": "VIVO"
+  },
+  "releaseYearOptions": {
+    "2024": "2024",
+    "2025": "2025",
+    "2026": "2026"
+  },
+  "priceRangeOptions": {
+    "0-3000": "¥0 - ¥3,000",
+    "3000-5000": "¥3,000 - ¥5,000",
+    "5000-8000": "¥5,000 - ¥8,000",
+    "8000-12000": "¥8,000 - ¥12,000",
+    "12000-99999": "¥12,000+"
+  },
+  "compare": {
+    "results": "对比结果",
+    "model": "型号",
+    "ram": "内存",
+    "storage": "存储",
+    "screen": "屏幕",
+    "battery": "电池",
+    "processor": "处理器",
+    "camera": "摄像头",
+    "price": "参考价格"
+  },
+  "priceSources": {
+    "taobao": "淘宝",
+    "jd": "京东",
+    "official": "品牌官网"
+  }
+}

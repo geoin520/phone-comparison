@@ -1,0 +1,286 @@
+PhoneComparison.ing 项目开发文档
+1. 项目概述
+项目名称	PhoneComparison.ing
+项目定位	AI 理念驱动的手机参数横向对比平台（Vibe Coding 风格）
+核心价值	用户通过下拉菜单筛选参数，一键生成带实时价格（一周内）来源的横向对比表格
+部署方式	GitHub + Vercel 自动部署
+开发工具	TRAE (AI 辅助编程)
+默认语言	中文（同时支持中英双语切换）
+2. 技术栈要求（告知 TRAE）
+框架：Next.js 14+ (App Router)
+
+语言：TypeScript
+
+样式：Tailwind CSS
+
+国际化：next-intl (支持 zh / en)
+
+字体：Space Grotesk (标题/正文) + JetBrains Mono (数字/代码)
+
+部署：Vercel (自动检测)
+
+3. 功能需求详述 (PRD)
+3.1 首页筛选区
+交互元素：5 个下拉菜单（Select）
+
+内存 (RAM)：8G、12G、16G、24G
+存储容量 (Storage)：32G、64G、128G、256G、512G、1TB、2TB
+品牌 (Brand)：Apple、Samsung、Xiaomi、Huawei、OnePlus、Google、OPPO、VIVO
+上市时间 (Release Year)：2024、2025、2026
+价格区间 (Price Range)：¥0-3000、¥3000-5000、¥5000-8000、¥8000-12000、¥12000+
+核心逻辑（重点）：
+
+用户不必全选所有选项。
+
+未选择的参数，默认视为“全选”（即不对此维度做筛选）。
+
+触发按钮：页面底部醒目位置的 “开始对比” 按钮。
+
+3.2 对比结果页
+数据获取：点击按钮后，跳转到 /compare 页面，通过 URL Query String 携带筛选条件（如 ?ram=16&brand=Apple）。
+
+数据展示：
+
+以横向表格（横向对比矩阵）展示。
+
+表头（列）：各个符合筛选条件的手机型号。
+
+表行（行）：品牌、型号、内存、容量、屏幕、电池、处理器、摄像头、参考价格、价格来源、价格更新时间。
+
+价格硬性要求：
+
+价格必须是一周以内的（数据源需标注具体日期）。
+
+必须提供价格来源：淘宝、京东、品牌官网（在表格中对应列展示）。
+
+空状态：若无匹配手机，显示友好的“未找到匹配手机，请调整筛选条件”提示。
+
+4. UI/UX 设计规范（赛博朋克风格）
+4.1 配色方案（请 TRAE 配置 Tailwind）
+色值用途	颜色名称	十六进制码
+主色调（霓虹蓝）	Cyber Blue	#00f0ff
+强调色（霓虹粉）	Cyber Pink	#ff00ff
+辅助色（霓虹紫）	Cyber Purple	#8b00ff
+主背景（深空黑）	Cyber Dark	#0a0a0f
+卡片背景（暗夜蓝）	Cyber DarkCard	#0d0d1a
+边框/分割线（科技灰）	Cyber DarkBorder	#1a1a2e
+正文文字（亮白）	Cyber Text	#e8e8f0
+次要文字（哑光灰）	Cyber Muted	#8899aa
+4.2 视觉特效
+霓虹发光：按钮和边框使用 box-shadow 发光效果（shadow-neon）。
+
+毛玻璃效果：顶部导航栏使用 backdrop-blur-lg。
+
+背景：纯色背景叠加极淡的径向渐变光晕（蓝/粉/紫）。
+
+字体：英文和数字优先使用等宽字体（JetBrains Mono），营造科技感。
+
+5. 完整页面文案（中英对照）
+请 TRAE 根据以下 Key-Value 创建 zh.json 和 en.json。
+
+5.1 通用文案 (common)
+Key	中文 (zh)	English (en)
+title	PhoneComparison.ing	PhoneComparison.ing
+subtitle	AI 驱动的手机参数对比平台	AI-Powered Phone Comparison Platform
+description	选择您关心的参数，快速对比多款手机的核心配置与实时价格	Select parameters to quickly compare core specs and real-time prices
+compareNow	开始对比	Compare Now
+searching	正在搜索...	Searching...
+backHome	返回首页	Back to Home
+all	全部	All
+specs	参数	Specs
+priceSource	价格来源	Price Source
+updated	更新时间	Updated
+noResults	未找到匹配的手机	No matching phones found
+noResultsHint	请尝试调整筛选条件	Please adjust your filters
+footer	用 AI 的方式，重新定义手机对比	Redefining phone comparison with AI
+5.2 筛选器标签 (filters)
+Key	中文 (zh)	English (en)
+ram	内存	RAM
+storage	存储容量	Storage
+brand	品牌	Brand
+releaseYear	上市时间	Release Year
+priceRange	价格区间	Price Range
+5.3 下拉选项文案
+内存 (ramOptions)
+
+8 -> "8 GB"
+
+12 -> "12 GB"
+
+16 -> "16 GB"
+
+24 -> "24 GB"
+
+存储 (storageOptions)
+
+32 -> "32 GB"
+
+64 -> "64 GB"
+
+128 -> "128 GB"
+
+256 -> "256 GB"
+
+512 -> "512 GB"
+
+1024 -> "1 TB"
+
+2048 -> "2 TB"
+
+品牌 (brandOptions) - 注意 Key 用小写
+
+apple -> "Apple"
+
+samsung -> "Samsung"
+
+xiaomi -> "Xiaomi"
+
+huawei -> "Huawei"
+
+oneplus -> "OnePlus"
+
+google -> "Google"
+
+oppo -> "OPPO"
+
+vivo -> "VIVO"
+
+上市年份 (releaseYearOptions)
+
+2024 -> "2024"
+
+2025 -> "2025"
+
+2026 -> "2026"
+
+价格区间 (priceRangeOptions)
+
+0-3000 -> "¥0 - ¥3,000" / "$0 - $400"
+
+3000-5000 -> "¥3,000 - ¥5,000" / "$400 - $700"
+
+5000-8000 -> "¥5,000 - ¥8,000" / "$700 - $1,100"
+
+8000-12000 -> "¥8,000 - ¥12,000" / "$1,100 - $1,650"
+
+12000-99999 -> "¥12,000+" / "$1,650+"
+
+5.4 对比表格列头 (compare)
+Key	中文 (zh)	English (en)
+results	对比结果	Comparison Results
+model	型号	Model
+ram	内存	RAM
+storage	存储	Storage
+screen	屏幕	Screen
+battery	电池	Battery
+processor	处理器	Processor
+camera	摄像头	Camera
+price	参考价格	Price
+6. 数据结构定义 (TypeScript)
+请 TRAE 在 types/index.ts 中创建以下类型：
+
+typescript
+export interface Phone {
+  id: string;
+  brand: string;          // 品牌
+  model: string;          // 型号
+  ram: number;            // 内存 (GB)
+  storage: number;        // 存储 (GB)
+  releaseYear: number;    // 上市年份
+  price: number;          // 价格 (CNY)
+  priceSource: '淘宝' | '京东' | '品牌官网' | 'Taobao' | 'JD.com' | 'Official';
+  priceUpdated: string;   // 格式 YYYY-MM-DD (必须在一周内)
+  screen: string;         // 屏幕参数
+  battery: string;        // 电池参数
+  processor: string;      // 处理器
+  camera: string;         // 摄像头参数
+  image?: string;         // (可选) 图片链接
+}
+
+export interface FilterOptions {
+  ram?: number;
+  storage?: number;
+  brand?: string;
+  releaseYear?: number;
+  priceRange?: string;    // 格式 "min-max"
+}
+7. 核心业务逻辑说明（给 TRAE 的算法提示）
+7.1 筛选逻辑 (filterPhones 函数)
+输入：全量手机数组 + 用户选择的 FilterOptions。
+
+处理：遍历每个手机，只对 FilterOptions 中存在的字段进行比对。
+
+如果 filters.ram 存在，则 phone.ram === filters.ram。
+
+如果 filters.brand 存在，则 phone.brand === filters.brand。
+
+如果某个字段在 filters 中不存在（undefined），则跳过该维度的筛选（相当于全选）。
+
+输出：筛选后的数组，并按 price 从低到高排序。
+
+7.2 价格时效性校验（UI 辅助）
+在展示“更新时间”时，若该日期距离当前日期 ≤ 7 天，在日期旁显示绿色小勾（✓）以示可信。
+
+8. 页面路由规划
+路由路径	页面功能
+/ 或 /[locale]	首页（展示筛选下拉菜单 + 开始对比按钮）
+/[locale]/compare	对比结果页（读取 URL 参数，展示横向对比表格）
+/api/compare	(可选) API 路由，用于后端筛选，但鉴于简单逻辑，可直接在客户端用 useSearchParams 筛选本地数据
+9. 给 TRAE 的文件夹结构建议
+text
+app/
+  [locale]/                # 国际化路由组
+    layout.tsx             # 根布局 (含 Header/Footer)
+    page.tsx               # 首页
+    compare/
+      page.tsx             # 对比结果页
+    globals.css            # 全局样式 + 赛博朋克主题变量
+  api/
+    compare/
+      route.ts             # (可选) API
+  i18n/
+    config.ts              # locales 配置
+    messages/
+      zh.json              # 中文文案
+      en.json              # 英文文案
+components/
+  common/
+    Header.tsx
+    Footer.tsx
+    LanguageSwitcher.tsx
+  home/
+    FilterSection.tsx      # 筛选区域
+  compare/
+    ComparisonTable.tsx    # 横向表格
+lib/
+  data/
+    phones.ts              # 模拟手机数据 (至少包含 20+ 款主流手机)
+  utils/
+    filter.ts              # 筛选逻辑函数
+    helpers.ts             # 格式化价格、存储等工具函数
+types/
+  index.ts                 # TypeScript 类型
+middleware.ts              # next-intl 中间件
+10. 模拟数据生成指南（请 TRAE 生成）
+请生成至少 25-30 条手机数据，覆盖以下维度：
+
+品牌：Apple, Samsung, Xiaomi, Huawei, OnePlus, Google, OPPO, VIVO。
+
+内存：8G, 12G, 16G 为主，适量加入 24G。
+
+存储：128G, 256G, 512G, 1TB。
+
+年份：2024 和 2025 年机型为主，可混入少量 2026 年机型。
+
+价格：覆盖 3000 元至 14000 元区间。
+
+价格来源：随机分配“淘宝”、“京东”、“品牌官网”。
+
+价格更新时间：必须设置为 2026-07-19 至 2026-07-25 之间（确保一周内）。
+
+11. 部署注意事项（告知 TRAE 无需生成代码，但需配置）
+在 next.config.js 中启用 trailingSlash: true（可选）。
+
+package.json 需包含 next-intl 依赖。
+
+Vercel 部署时，构建命令默认为 npm run build，无需特殊配置。

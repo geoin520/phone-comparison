@@ -1,0 +1,81 @@
+{
+  "common": {
+    "title": "PhoneComparison.ing",
+    "subtitle": "AI-Powered Phone Comparison Platform",
+    "description": "Select parameters to quickly compare core specs and real-time prices",
+    "compareNow": "Compare Now",
+    "searching": "Searching...",
+    "backHome": "Back to Home",
+    "all": "All",
+    "specs": "Specs",
+    "priceSource": "Price Source",
+    "updated": "Updated",
+    "noResults": "No matching phones found",
+    "noResultsHint": "Please adjust your filters",
+    "footer": "Redefining phone comparison with AI",
+    "brand": "Brand",
+    "filters": "Filters",
+    "verified": "Price verified",
+    "resultsCount": "{count} phones found"
+  },
+  "filters": {
+    "ram": "RAM",
+    "storage": "Storage",
+    "brand": "Brand",
+    "releaseYear": "Release Year",
+    "priceRange": "Price Range"
+  },
+  "ramOptions": {
+    "8": "8 GB",
+    "12": "12 GB",
+    "16": "16 GB",
+    "24": "24 GB"
+  },
+  "storageOptions": {
+    "32": "32 GB",
+    "64": "64 GB",
+    "128": "128 GB",
+    "256": "256 GB",
+    "512": "512 GB",
+    "1024": "1 TB",
+    "2048": "2 TB"
+  },
+  "brandOptions": {
+    "apple": "Apple",
+    "samsung": "Samsung",
+    "xiaomi": "Xiaomi",
+    "huawei": "Huawei",
+    "oneplus": "OnePlus",
+    "google": "Google",
+    "oppo": "OPPO",
+    "vivo": "VIVO"
+  },
+  "releaseYearOptions": {
+    "2024": "2024",
+    "2025": "2025",
+    "2026": "2026"
+  },
+  "priceRangeOptions": {
+    "0-3000": "$0 - $400",
+    "3000-5000": "$400 - $700",
+    "5000-8000": "$700 - $1,100",
+    "8000-12000": "$1,100 - $1,650",
+    "12000-99999": "$1,650+"
+  },
+  "compare": {
+    "results": "Comparison Results",
+    "model": "Model",
+    "ram": "RAM",
+    "storage": "Storage",
+    "screen": "Screen",
+    "battery": "Battery",
+    "processor": "Processor",
+    "camera": "Camera",
+    "price": "Price"
+  },
+  "priceSources": {
+    "taobao": "Taobao",
+    "jd": "JD.com",
+    "official": "Official"
+  }
+}

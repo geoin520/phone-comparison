@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cyber-blue: #00f0ff;
+  --cyber-pink: #ff00ff;
+  --cyber-purple: #8b00ff;
+  --cyber-dark: #0a0a0f;
+  --cyber-dark-card: #0d0d1a;
+  --cyber-dark-border: #1a1a2e;
+  --cyber-text: #e8e8f0;
+  --cyber-muted: #8899aa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--cyber-dark);
+  color: var(--cyber-text);
+  font-family: var(--font-space-grotesk), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-image: radial-gradient(
+      circle at 20% 20%,
+      rgba(0, 240, 255, 0.08),
+      transparent 40%
+    ),
+    radial-gradient(circle at 80% 30%, rgba(255, 0, 255, 0.06), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(139, 0, 255, 0.08), transparent 45%);
+  background-attachment: fixed;
+}
+
+/* 数字与代码优先使用等宽字体 */
+.font-mono,
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+@layer components {
+  /* 赛博朋克卡片 */
+  .cyber-card {
+    @apply border border-cyber-dark-border bg-cyber-dark-card/80 backdrop-blur-sm rounded-lg;
+    position: relative;
+  }
+
+  .cyber-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 240, 255, 0.4),
+      transparent 40%,
+      transparent 60%,
+      rgba(255, 0, 255, 0.3)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  /* 霓虹按钮 */
+  .btn-neon {
+    @apply relative inline-flex items-center justify-center gap-2 px-8 py-4 font-mono font-bold uppercase tracking-wider text-cyber-dark bg-cyber-blue rounded-md transition-all duration-300;
+    box-shadow: 0 0 5px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
+  }
+
+  .btn-neon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 40px rgba(0, 240, 255, 0.5);
+  }
+
+  .btn-neon:active {
+    transform: translateY(0);
+  }
+
+  /* 霓虹边框按钮 */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 font-mono text-sm uppercase tracking-wider text-cyber-blue border border-cyber-blue/50 rounded-md transition-all duration-300 hover:bg-cyber-blue/10;
+  }
+
+  /* 赛博朋克下拉框 */
+  .cyber-select {
+    @apply w-full appearance-none bg-cyber-dark border border-cyber-dark-border rounded-md px-4 py-3 pr-10 text-cyber-text font-mono text-sm transition-all duration-200 cursor-pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2 4L6 8L10 4' stroke='%2300f0ff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+
+  .cyber-select:hover {
+    border-color: rgba(0, 240, 255, 0.6);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.25);
+  }
+
+  .cyber-select:focus {
+    outline: none;
+    border-color: var(--cyber-blue);
+    box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.5), 0 0 16px rgba(0, 240, 255, 0.3);
+  }
+
+  .cyber-select option {
+    background-color: var(--cyber-dark);
+    color: var(--cyber-text);
+  }
+
+  /* 霓虹文字 */
+  .text-neon-blue {
+    color: var(--cyber-blue);
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  }
+
+  .text-neon-pink {
+    color: var(--cyber-pink);
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.6);
+  }
+
+  /* 标签徽章 */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-mono border;
+  }
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cyber-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cyber-dark-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.4);
+}
+
+/* 扫描线动画容器 */
+.scanline-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline-wrapper::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 240, 255, 0.5),
+    transparent
+  );
+  animation: scan-line 4s linear infinite;
+  pointer-events: none;
+}
