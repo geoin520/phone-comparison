@@ -144,9 +144,6 @@ export default function ComparisonTable({ phones }: { phones: Phone[] }) {
                     <span className="font-mono text-base font-bold text-cyber-text">
                       {p.model}
                     </span>
-                    <span className="font-mono text-xs text-cyber-muted">
-                      {formatReleaseDate(p.releaseYear, p.releaseMonth, locale)}
-                    </span>
                   </div>
                 </th>
               ))}

@@ -74,7 +74,8 @@
     "battery": "Battery",
     "processor": "Processor",
     "camera": "Camera",
-    "price": "Price"
+    "price": "Price",
+    "export": "Export CSV"
   },
   "priceSources": {
     "taobao": "Taobao",

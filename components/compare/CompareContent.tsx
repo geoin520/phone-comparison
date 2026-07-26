@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { parseFiltersFromParams } from '@/lib/utils/filter';
 import ComparisonTable, { EmptyState } from '@/components/compare/ComparisonTable';
+import { phonesToCsv, downloadCsv } from '@/lib/utils/export';
 import { Link } from '@/i18n/navigation';
 import type { Phone } from '@/types';
 
@@ -26,6 +27,7 @@ export default function CompareContent() {
   const tStorage = useTranslations('storageOptions');
   const tYear = useTranslations('releaseYearOptions');
   const tPrice = useTranslations('priceRangeOptions');
+  const tSource = useTranslations('priceSources');
   const tData = useTranslations('dataSource');
   const locale = useLocale();
 
@@ -59,7 +61,7 @@ export default function CompareContent() {
     };
   }, [searchParams]);
 
-  const results = data?.results ?? [];
+  const results = useMemo(() => data?.results ?? [], [data]);
   const source = data?.source ?? 'fallback';
 
   const activeChips: Array<{ label: string; value: string }> = [];
@@ -75,6 +77,31 @@ export default function CompareContent() {
     activeChips.push({ label: tf('priceRange'), value: tPrice(filters.priceRange!) });
   if (filters.keyword !== undefined && filters.keyword.trim() !== '')
     activeChips.push({ label: tf('keyword'), value: filters.keyword });
+
+  const handleExport = useCallback(() => {
+    if (results.length === 0) return;
+    const csv = phonesToCsv(results, {
+      locale,
+      labels: {
+        brand: t('brand'),
+        model: tc('model'),
+        releaseDate: tc('releaseDate'),
+        ram: tc('ram'),
+        storage: tc('storage'),
+        screen: tc('screen'),
+        battery: tc('battery'),
+        processor: tc('processor'),
+        camera: tc('camera'),
+        price: tc('price'),
+        priceSource: t('priceSource'),
+        priceUpdated: t('updated'),
+      },
+      brandLabel: (b) => tBrand(b),
+      sourceLabel: (s) => tSource(s),
+    });
+    const dateStr = new Date().toISOString().split('T')[0];
+    downloadCsv(csv, `phone-comparison-${dateStr}.csv`);
+  }, [results, locale, t, tc, tBrand, tSource]);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -100,9 +127,34 @@ export default function CompareContent() {
             </p>
           )}
         </div>
-        <Link href="/" className="btn-ghost self-start sm:self-auto">
-          ← {t('backHome')}
-        </Link>
+        <div className="flex items-center gap-2 self-start sm:self-auto">
+          {!loading && results.length > 0 && (
+            <button
+              type="button"
+              onClick={handleExport}
+              className="btn-ghost inline-flex items-center gap-1.5"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-4 w-4"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              {tc('export')}
+            </button>
+          )}
+          <Link href="/" className="btn-ghost">
+            ← {t('backHome')}
+          </Link>
+        </div>
       </div>
 
       {/* 数据来源标识 */}

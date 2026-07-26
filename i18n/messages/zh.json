@@ -74,7 +74,8 @@
     "battery": "电池",
     "processor": "处理器",
     "camera": "摄像头",
-    "price": "参考价格"
+    "price": "参考价格",
+    "export": "导出 CSV"
   },
   "priceSources": {
     "taobao": "淘宝",

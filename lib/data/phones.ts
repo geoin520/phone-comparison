@@ -4,7 +4,7 @@ import { Phone } from '@/types';
 // 包含 32 款主流机型，含 iPhone 16e 等 2025 新机型
 // 价格更新时间均设置在 2026-07-19 至 2026-07-25 之间（一周内）
 // 价格覆盖 3000 - 14000 元区间，来源随机分配淘宝 / 京东 / 品牌官网
-// releaseMonth 为实际上市月份（1-12），便于对比结果精确展示
+// 每款机型包含 releaseYear 与 releaseMonth（1-12）字段，记录实际上市年月
 export const phones: Phone[] = [
   {
     id: 'apple-iphone-15-pro',
