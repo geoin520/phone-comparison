@@ -120,6 +120,26 @@ pre {
     color: var(--cyber-text);
   }
 
+  /* 赛博朋克文本输入框 */
+  .cyber-input {
+    @apply w-full bg-cyber-dark border border-cyber-dark-border rounded-md px-4 py-3 text-cyber-text font-mono text-sm transition-all duration-200;
+  }
+
+  .cyber-input::placeholder {
+    color: rgba(136, 153, 170, 0.5);
+  }
+
+  .cyber-input:hover {
+    border-color: rgba(0, 240, 255, 0.6);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.25);
+  }
+
+  .cyber-input:focus {
+    outline: none;
+    border-color: var(--cyber-blue);
+    box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.5), 0 0 16px rgba(0, 240, 255, 0.3);
+  }
+
   /* 霓虹文字 */
   .text-neon-blue {
     color: var(--cyber-blue);

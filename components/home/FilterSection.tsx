@@ -42,6 +42,19 @@ export default function FilterSection() {
     });
   };
 
+  // 自定义型号关键词：空字符串视为未筛选
+  const updateKeyword = (value: string) => {
+    setFilters((prev) => {
+      const next = { ...prev };
+      if (value.trim() === '') {
+        delete next.keyword;
+      } else {
+        next.keyword = value;
+      }
+      return next;
+    });
+  };
+
   const activeCount = Object.keys(filters).length;
 
   const handleCompare = () => {
@@ -104,7 +117,7 @@ export default function FilterSection() {
         </div>
         {activeCount > 0 && (
           <span className="badge border-cyber-pink/50 text-cyber-pink">
-            {activeCount} / 5
+            {activeCount} / 6
           </span>
         )}
       </div>
@@ -140,6 +153,24 @@ export default function FilterSection() {
             </div>
           );
         })}
+
+        {/* 自定义型号输入 */}
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="filter-keyword"
+            className="font-mono text-xs uppercase tracking-wider text-cyber-muted"
+          >
+            {tf('keyword')}
+          </label>
+          <input
+            id="filter-keyword"
+            type="text"
+            value={filters.keyword ?? ''}
+            onChange={(e) => updateKeyword(e.target.value)}
+            placeholder={tf('keywordPlaceholder')}
+            className="cyber-input"
+          />
+        </div>
       </div>
 
       <div className="mt-8 flex flex-col items-center gap-3">

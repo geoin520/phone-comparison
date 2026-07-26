@@ -23,7 +23,9 @@
     "storage": "存储容量",
     "brand": "品牌",
     "releaseYear": "上市时间",
-    "priceRange": "价格区间"
+    "priceRange": "价格区间",
+    "keyword": "自定义",
+    "keywordPlaceholder": "输入手机型号，如 iPhone 16"
   },
   "ramOptions": {
     "8": "8 GB",
@@ -65,6 +67,7 @@
   "compare": {
     "results": "对比结果",
     "model": "型号",
+    "releaseDate": "上市时间",
     "ram": "内存",
     "storage": "存储",
     "screen": "屏幕",
@@ -77,5 +80,10 @@
     "taobao": "淘宝",
     "jd": "京东",
     "official": "品牌官网"
+  },
+  "dataSource": {
+    "liveSource": "实时数据 · GitHub 开源数据库",
+    "fallbackSource": "本地缓存数据",
+    "loadingHint": "正在从全球手机规格数据库获取实时数据..."
   }
 }

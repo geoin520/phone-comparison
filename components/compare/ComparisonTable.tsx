@@ -2,7 +2,7 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import { Phone } from '@/types';
-import { formatPrice, formatStorage, formatDate, isPriceFresh } from '@/lib/utils/helpers';
+import { formatPrice, formatStorage, formatDate, formatReleaseDate, isPriceFresh } from '@/lib/utils/helpers';
 import { Link } from '@/i18n/navigation';
 
 export default function ComparisonTable({ phones }: { phones: Phone[] }) {
@@ -31,6 +31,15 @@ export default function ComparisonTable({ phones }: { phones: Phone[] }) {
       key: 'model',
       label: tc('model'),
       render: (p) => <span className="font-semibold text-cyber-text">{p.model}</span>,
+    },
+    {
+      key: 'releaseDate',
+      label: tc('releaseDate'),
+      render: (p) => (
+        <span className="font-mono text-sm text-cyber-text">
+          {formatReleaseDate(p.releaseYear, p.releaseMonth, locale)}
+        </span>
+      ),
     },
     {
       key: 'ram',
@@ -136,7 +145,7 @@ export default function ComparisonTable({ phones }: { phones: Phone[] }) {
                       {p.model}
                     </span>
                     <span className="font-mono text-xs text-cyber-muted">
-                      {p.releaseYear}
+                      {formatReleaseDate(p.releaseYear, p.releaseMonth, locale)}
                     </span>
                   </div>
                 </th>

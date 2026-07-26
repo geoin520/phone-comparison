@@ -20,6 +20,11 @@ export function filterPhones(phones: Phone[], filters: FilterOptions): Phone[] {
       if (!Number.isNaN(min) && phone.price < min) return false;
       if (!Number.isNaN(max) && phone.price >= max) return false;
     }
+    if (filters.keyword !== undefined && filters.keyword.trim() !== '') {
+      const kw = filters.keyword.trim().toLowerCase();
+      const hay = `${phone.brand} ${phone.model}`.toLowerCase();
+      if (!hay.includes(kw)) return false;
+    }
     return true;
   });
 
@@ -36,6 +41,9 @@ export function buildQueryString(filters: FilterOptions): string {
   if (filters.brand !== undefined) params.set('brand', filters.brand);
   if (filters.releaseYear !== undefined) params.set('releaseYear', String(filters.releaseYear));
   if (filters.priceRange !== undefined) params.set('priceRange', filters.priceRange);
+  if (filters.keyword !== undefined && filters.keyword.trim() !== '') {
+    params.set('keyword', filters.keyword.trim());
+  }
   const qs = params.toString();
   return qs ? `?${qs}` : '';
 }
@@ -62,6 +70,9 @@ export function parseFiltersFromParams(
 
   const priceRange = searchParams.get('priceRange');
   if (priceRange !== null && priceRange !== '') filters.priceRange = priceRange;
+
+  const keyword = searchParams.get('keyword');
+  if (keyword !== null && keyword !== '') filters.keyword = keyword;
 
   return filters;
 }

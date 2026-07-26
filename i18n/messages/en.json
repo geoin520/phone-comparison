@@ -23,7 +23,9 @@
     "storage": "Storage",
     "brand": "Brand",
     "releaseYear": "Release Year",
-    "priceRange": "Price Range"
+    "priceRange": "Price Range",
+    "keyword": "Custom",
+    "keywordPlaceholder": "Enter phone model, e.g. iPhone 16"
   },
   "ramOptions": {
     "8": "8 GB",
@@ -65,6 +67,7 @@
   "compare": {
     "results": "Comparison Results",
     "model": "Model",
+    "releaseDate": "Release Date",
     "ram": "RAM",
     "storage": "Storage",
     "screen": "Screen",
@@ -77,5 +80,10 @@
     "taobao": "Taobao",
     "jd": "JD.com",
     "official": "Official"
+  },
+  "dataSource": {
+    "liveSource": "Live Data · GitHub Open Database",
+    "fallbackSource": "Local Cached Data",
+    "loadingHint": "Fetching real-time data from global phone specs database..."
   }
 }

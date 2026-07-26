@@ -19,6 +19,7 @@ export interface Phone {
   ram: number; // 内存 (GB)
   storage: number; // 存储 (GB)
   releaseYear: number; // 上市年份
+  releaseMonth?: number; // 上市月份 (1-12，可选)
   price: number; // 价格 (CNY)
   priceSource: PriceSourceKey; // 价格来源
   priceUpdated: string; // 格式 YYYY-MM-DD（必须在一周内）
@@ -35,6 +36,7 @@ export interface FilterOptions {
   brand?: BrandKey;
   releaseYear?: number;
   priceRange?: string; // 格式 "min-max"
+  keyword?: string; // 自定义型号关键词（模糊匹配 phone.model）
 }
 
 // 筛选器可选值常量，供 UI 渲染下拉菜单使用

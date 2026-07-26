@@ -45,3 +45,24 @@ export function formatDate(dateStr: string, locale: string): string {
     day: '2-digit',
   });
 }
+
+/**
+ * 格式化上市时间（精确到月份）
+ * 中文：2025年2月；英文：Feb 2025
+ */
+export function formatReleaseDate(
+  year: number,
+  month: number | undefined,
+  locale: string,
+): string {
+  if (!year) return '-';
+  if (!month || month < 1 || month > 12) return `${year}`;
+  if (locale === 'en') {
+    const monthNames = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    ];
+    return `${monthNames[month - 1]} ${year}`;
+  }
+  return `${year}年${month}月`;
+}
