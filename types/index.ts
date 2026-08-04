@@ -4,6 +4,7 @@ export type BrandKey =
   | 'samsung'
   | 'xiaomi'
   | 'huawei'
+  | 'honor'
   | 'oneplus'
   | 'google'
   | 'oppo'
@@ -47,6 +48,7 @@ export const BRAND_OPTIONS: BrandKey[] = [
   'samsung',
   'xiaomi',
   'huawei',
+  'honor',
   'oneplus',
   'google',
   'oppo',
